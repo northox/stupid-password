@@ -5,21 +5,22 @@ It provides a simple way of preventing user from using easy to guess/bruteforce 
 
 * at least 8 characters; AND
 * at least four charsets (i.e. uppsercase, lowercase, numeric and special charactere); AND
-* the supply password is extrapolate in 1337 speak encoding (e.g. admin=@dm1n : 1=i,4=a,0=o, etc); AND 
-    * most not match common weak passwords obtained by analysing the latests compromised password databases (stratfor, sony, phpbb, myspace); AND
+* the supplied password is extrapolate in 1337 speak encoding (e.g. admin=@dm1n : 1=i,4=a,0=o, etc); AND 
+    * most not match common weak passwords obtained by analysing the latest compromised password databases (stratfor, sony, phpbb, myspace); AND
     * most not be derived by the environmental context (e.g. the name of the company, the name of the application, the name of the site, the username, etc).
     
 # 1337 speak conversion
-* @ => a OR o
-* 4 => a
-* 8 => b
-* 3 => e
-* 1 => i OR l
-* ! => i OR l OR 1
-* 0 => o
-* $ => s OR 5
-* 5 => s
-* 7 => t
+
+    @ => a OR o  
+    4 => a
+    8 => b
+    3 => e
+    1 => i OR l
+    ! => i OR l OR 1
+    0 => o
+    $ => s OR 5
+    5 => s
+    7 => t
 
 # Usage
 Simplest usage would look something like this:
