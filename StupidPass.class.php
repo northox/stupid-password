@@ -4,7 +4,7 @@
 *
 * This class provide simple yep pretty effective password validation rules by
 * introducing 1337 speaking convertion (e.g. 1=i,4=a,0=o, etc), validating
-* lenght, use of multiple charsets (uppsercase, lowercase, numeric, special),
+* length, use of multiple charsets (uppsercase, lowercase, numeric, special),
 * and use of common password based on latest password analysis (stratfor, sony, 
 * phpbb, etc).
 *
@@ -40,7 +40,7 @@ class StupidPass
   {
     $this->maxlen = $maxlen;
     $this->environ = $environ;
-    $this->dict = (isset($dict)) ? $dict: NICHT_PATH_LIB.'StupidPass.default.dict';
+    $this->dict = (isset($dict)) ? $dict: 'StupidPass.default.dict';
     if ($lang != null) $this->lang = $lang;
   }
  

@@ -5,7 +5,7 @@ It provides a simple way of preventing user from using easy to guess/bruteforce 
 
 * at least 8 characters; AND
 * at least four charsets (i.e. uppsercase, lowercase, numeric and special charactere); AND
-* the supplied password is extrapolate in 1337 speak encoding (e.g. admin=@dm1n : 1=i,4=a,0=o, etc); AND 
+* the supplied password is extrapolate in 1337 speak encoding (e.g. admin = @dm1n (a=@, i=1)); AND 
     * most not match common weak passwords obtained by analysing the latest compromised password databases (stratfor, sony, phpbb, myspace); AND
     * most not be derived by the environmental context (e.g. the name of the company, the name of the application, the name of the site, the username, etc).
     
@@ -39,7 +39,7 @@ The most complex usage could look like this:
     'common' => 'is way too common! Come on, help yourself!',
     'environ'=> "WTF?!? Don't use the name of our website as your password!");
     
-    $sp = new StupidPass(40, array('github'), 'StupidPass.default.dict', $hardlang);
+    $sp = new StupidPass(40, array('github'), './StupidPass.default.dict', $hardlang);
     if($sp->validate($PasswordToTest) === false) {
       $err = $sp-get_errors();
       print("Your password is weak:<br \>");
