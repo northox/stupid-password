@@ -2,6 +2,7 @@
 StupidPass.class.php is a PHP library to prevent common password attacks. Is it based on researches done on the latest password database breaches and according analysis.
 
 It provides a simple way of preventing user from using easy to guess/bruteforce passwords by implementing the following password requirements:
+
 * at least 8 characters; AND
 * at least four charsets (i.e. uppsercase, lowercase, numeric and special charactere); AND
 * the supply password is extrapolate in 1337 speak encoding (e.g. admin=@dm1n : 1=i,4=a,0=o, etc); AND 
@@ -22,10 +23,12 @@ It provides a simple way of preventing user from using easy to guess/bruteforce 
 
 # Usage
 Simplest usage would look something like this:
+
     $sp = new StupidPass();
     $bool = $sp->validate($PasswordToTest);
 
 The most complex usage could look like this:
+
     $hardlang = array(
     'length' => 'must be between %s and %s characters inclusively',
     'upper'  => 'must contain at least one uppercase character',
@@ -45,6 +48,7 @@ The most complex usage could look like this:
     }
 
 # Todo
+
 * Post some test.
 
 # License
