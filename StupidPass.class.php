@@ -2,11 +2,20 @@
 /**
 * Stupid Pass - Simple password quality enforcer
 *
-* This class provide simple yep pretty effective password validation rules by
-* introducing 1337 speaking convertion (e.g. 1=i,4=a,0=o, etc), validating
-* length, use of multiple charsets (uppsercase, lowercase, numeric, special),
-* and use of common password based on latest password analysis (stratfor, sony, 
-* phpbb, etc).
+* This class provides a simple way of preventing user from using easy to 
+* guess/bruteforce password. It has been develop to get rid of the *crack-lib 
+* PHP extension*.
+*
+* It provides simple, yet pretty effective password validation rules. The 
+* library introduce 1337 speaking extrapolation. What we mean by this is 
+* converting the supplied password to an exhaustive list of possible simple 
+* alteration such as changing the letter a by @ or 4. The complete list of 
+* alteration can be found below (section 1337 speak conversion table). This list
+* is then compared against common passwords based on researches done on the
+* latest password database breaches (stratfor, sony, phpbb, rockyou, myspace). 
+* Additionally, it validates the length and the use of multiple charsets 
+* (uppsercase, lowercase, numeric, special). The later reduce drastically the 
+* size of the common password list.
 *
 * @author Danny Fullerton - Mantor Organization www.mantor.org
 * @version 1.0
@@ -46,6 +55,7 @@ class StupidPass
  
   public function validate($pass)
   {
+    $this->errors = null;
     $this->original = $pass;
     $this->length();
     $this->upper();
@@ -142,6 +152,7 @@ class StupidPass
                   '0'=>array('o'),
                   '$'=>array('s','5'),
                   '5'=>array('s'),
+                  '6'=>array('b'),
                   '7'=>array('t')
                  );
     $map = array();

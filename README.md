@@ -1,15 +1,17 @@
+# Overview
+StupidPass.class.php provides a simple way of preventing user from using easy to guess/bruteforce password. It has been develop to get rid of the *crack-lib PHP extension*.
+
 # Description
-StupidPass.class.php is a PHP library to prevent common password attacks. Is it based on researches done on the latest password database breaches and according analysis.
+StupidPass.class.php is a PHP library that provides simple, yet pretty effective password validation rules. The library introduce 1337 speaking extrapolation. What we mean by this is converting the supplied password to an exhaustive list of possible simple alteration such as changing the letter a by @ or 4. The complete list of alteration can be found below (section 1337 speak conversion table). This list is then compared against common passwords based on researches done on the latest password database breaches (stratfor, sony, phpbb, rockyou, myspace). Additionally, it validates the length and the use of multiple charsets (uppsercase, lowercase, numeric, special). The later reduce drastically the size of the common password list.
 
-It provides a simple way of preventing user from using easy to guess/bruteforce passwords by implementing the following password requirements:
+Here's the requirements:
 
-* at least 8 characters; AND
-* at least four charsets (i.e. uppsercase, lowercase, numeric and special characters); AND
-* the supplied password is extrapolated to 1337 speak encoding (e.g. admin = @dm1n (a=@, i=1)); AND 
-    * must not match common weak passwords obtained by analysing the latest compromised password databases (stratfor, sony, phpbb, myspace); AND
-    * must not be derived by the environmental context (e.g. the name of the company, the name of the application, the name of the site, the username, etc).
+* ensure the length is greater or equal to 8 characters; AND
+* ensure is contains 4 charsets (i.e. uppsercase, lowercase, numeric and special characters);
+    * if environmental context is supplied, the list must not match the environmental context (regex) (e.g. the name of the company, the name of the application, the name of the site, the username, etc).
+    * the list must not match with the supplied dictionary which is based on common weak passwords obtained by analysing the latest compromised password databases (stratfor, sony, phpbb, myspace, etc); AND
     
-# 1337 speak conversion
+# 1337 speak conversion table
 
     @ => a OR o  
     4 => a
@@ -20,6 +22,7 @@ It provides a simple way of preventing user from using easy to guess/bruteforce 
     0 => o
     $ => s OR 5
     5 => s
+    6 => b
     7 => t
 
 # Usage
@@ -30,6 +33,7 @@ Simplest usage would look something like this:
 
 The most complex usage could look like this:
 
+    // Override the default errors messages
     $hardlang = array(
     'length' => 'must be between %s and %s characters inclusively',
     'upper'  => 'must contain at least one uppercase character',
@@ -39,9 +43,12 @@ The most complex usage could look like this:
     'common' => 'is way too common! Come on, help yourself!',
     'environ'=> "WTF?!? Don't use the name of our website as your password!");
     
-    $sp = new StupidPass(40, array('github'), './StupidPass.default.dict', $hardlang);
+    // Supply reference ot the environment (company, hostname, username, etc)
+    $environmental = array('northox', 'github', 'stupidpass', 'stupidpassword');
+    
+    $sp = new StupidPass(40, $environmental, './StupidPass.default.dict', $hardlang);
     if($sp->validate($PasswordToTest) === false) {
-      $err = $sp-get_errors();
+      $err = $sp->get_errors();
       print("Your password is weak:<br \>");
       foreach($err as $e) {
         print($e."<br />");
@@ -58,7 +65,7 @@ Let's take the must common passwords
     FAIL:  pr1nce55
     FAIL:  b4byg1r1
     FAIL:  passw0rd
-    FAIL:  P@ssw0rd
+    FAIL:  P@55w0r6
     FAIL:  zxcasdqwe
     FAIL:  zxc45dqw3
 
