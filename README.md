@@ -21,7 +21,7 @@ The maximum entropy provided by stupid password is: lowercase + uppercase + nume
 
 n.b. I consider only 10 possiblities for special characters as most users only use what's on top of the numbers (from a keyboard perspective).
 
-If you consider loosing up the requirements, be advise that it is better to use 7 characters passwords (72^7 = 1.0030613×10¹³) then to remove the numeric or special charset (62^8 = 2.183401056×10¹⁴).
+If you consider loosing up the requirements, be advise that it is better to remove the numeric OR special charset (62^8 = 2.183401056×10¹⁴) then to use 7 characters passwords (72^7 = 1.0030613×10¹³) with all the charsets.
 
 # 1337 speak conversion table
 
