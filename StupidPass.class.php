@@ -173,12 +173,8 @@ class StupidPass
       }
     }
     unset($old);
-    if($index == count($map)-1) {
-      return $new;
-    } else {
-      $index++;
-      return $this->expand($map, $new, $index);
-    }
+    $r = ($index == count($map)-1) ? $new : $this->expand($map, $new, $index + 1);
+    return $r;
   }
 }
 ?>

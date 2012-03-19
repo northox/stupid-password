@@ -48,9 +48,19 @@ The most complex usage could look like this:
       }
     }
 
-# Todo
+# Test
 
-* Post some test.
+Let's take the most common passwords 
+
+    $ php test.php 
+    FAIL:  football
+    FAIL:  fOOtb4ll
+    FAIL:  pr1nce55
+    FAIL:  b4byg1r1
+    FAIL:  passw0rd
+    FAIL:  P@ssw0rd
+    FAIL:  zxcasdqwe
+    FAIL:  zxc45dqw3
 
 # License
 BSD license. In other word it's free software, free as in free beer.
