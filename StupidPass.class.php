@@ -107,7 +107,7 @@ class StupidPass
   {
     foreach($this->environ as $env) {
       foreach($this->pass as $pass) {
-        if(preg_match("/$env/", $pass) == 1) {
+        if(preg_match("/$env/i", $pass) == 1) {
           $this->errors[] = $this->lang['environ'];
           return;
         }
