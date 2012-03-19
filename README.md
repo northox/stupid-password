@@ -17,11 +17,11 @@ Additionally:
 * Offline attacks should be mitigated by using strong hashing algorithm such as PBKDF2 (e.g. [nicht](https://github.com/northox/nicht/blob/master/src/admin.php#L58) [PDKDF2](https://github.com/northox/nicht/blob/master/lib/nicht/MysqliNichtAuthPbkdf2.class.php#L65)).
 
 # Some maths
-The maximum entropy provided by stupid password is: lowercase + uppercase + numeric + special = 8 ^(26 + 26 + 10 + 10) = 8^72 = 1.053122917×10⁶⁵
+The maximum entropy provided by stupid password is: lowercase + uppercase + numeric + special = (26 + 26 + 10 + 10)^8 = 72^8 = 7.222041363×10¹⁴
 
 n.b. I consider only 10 possiblities for special characters as most users only use what's on top of the numbers (from a keyboard perspective).
 
-If you consider loosing up the requirements, be advise that it is better to use 7 characters passwords (7^72 = 7.031676479×10⁶⁰) then to remove the numeric or special charset (8^62 = 9.807971462×10⁵⁵).
+If you consider loosing up the requirements, be advise that it is better to use 7 characters passwords (72^7 = 1.0030613×10¹³) then to remove the numeric or special charset (62^8 = 2.183401056×10¹⁴).
 
 # 1337 speak conversion table
 
