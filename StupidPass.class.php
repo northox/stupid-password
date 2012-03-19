@@ -152,7 +152,7 @@ class StupidPass
                   '0'=>array('o'),
                   '$'=>array('s','5'),
                   '5'=>array('s'),
-                  '6'=>array('b'),
+                  '6'=>array('b', 'd'),
                   '7'=>array('t')
                  );
     $map = array();

@@ -7,10 +7,22 @@ StupidPass.class.php is a PHP library that provides simple, yet pretty effective
 Here's the requirements:
 
 * ensure the length is greater or equal to 8 characters; AND
-* ensure is contains 4 charsets (i.e. uppsercase, lowercase, numeric and special characters);
-    * if environmental context is supplied, the list must not match the environmental context (regex) (e.g. the name of the company, the name of the application, the name of the site, the username, etc).
-    * the list must not match with the supplied dictionary which is based on common weak passwords obtained by analysing the latest compromised password databases (stratfor, sony, phpbb, myspace, etc); AND
-    
+* ensure is contains 4 charsets (i.e. uppsercase, lowercase, numeric and special characters); AND
+* if environmental context is supplied, the list must not match the environmental context (regex) (e.g. the name of the company, the name of the application, the name of the site, the username, etc). AND
+* the list must not match with the supplied dictionary which is based on common weak passwords obtained by analysing the latest compromised password databases (stratfor, sony, phpbb, myspace, etc);
+
+Additionally:
+
+* Online attacks should be mitigated by implementing anti-bruteforce techniques (e.g. [nicht anti-brueforce](https://github.com/northox/nicht/blob/master/lib/nicht/Nicht.class.php#L633)).
+* Offline attacks should be mitigated by using strong hashing algorithm such as PBKDF2 (e.g. [nicht](https://github.com/northox/nicht/blob/master/src/admin.php#L58) [PDKDF2](https://github.com/northox/nicht/blob/master/lib/nicht/MysqliNichtAuthPbkdf2.class.php#L65)).
+
+# Some maths
+The maximum entropy provided by stupid password is: lowercase + uppercase + numeric + special = 8 ^(26 + 26 + 10 + 10) = 8^72 = 1.053122917×10⁶⁵
+
+n.b. I consider only 10 possiblities for special characters as most users only use what's on top of the numbers (from a keyboard perspective).
+
+If you consider loosing up the requirements, be advise that it is better to use 7 characters passwords (7^72 = 7.031676479×10⁶⁰) then to remove the numeric or special charset (8^62 = 9.807971462×10⁵⁵).
+
 # 1337 speak conversion table
 
     @ => a OR o  
@@ -22,7 +34,7 @@ Here's the requirements:
     0 => o
     $ => s OR 5
     5 => s
-    6 => b
+    6 => b OR d
     7 => t
 
 # Usage
@@ -56,8 +68,7 @@ The most complex usage could look like this:
     }
 
 # Test
-
-Let's take the must common passwords 
+Here's some test:
 
     $ php test.php 
     FAIL:  football
@@ -65,9 +76,10 @@ Let's take the must common passwords
     FAIL:  pr1nce55
     FAIL:  b4byg1r1
     FAIL:  passw0rd
-    FAIL:  P@55w0r6
+    PASS:  P@55W0r6
     FAIL:  zxcasdqwe
     FAIL:  zxc45dqw3
+    PASS:  aPf1#@_GHe
 
 # License
 BSD license. In other word it's free software, free as in free beer.
