@@ -13,7 +13,7 @@ Here's the requirements:
 
 Additionally:
 
-* Online attacks should be mitigated by implementing anti-bruteforce techniques (e.g. [nicht anti-brueforce](https://github.com/northox/nicht/blob/master/lib/nicht/Nicht.class.php#L633)).
+* Online attacks should be mitigated by implementing anti-bruteforce techniques (e.g. [nicht anti-bruteforce](https://github.com/northox/nicht/blob/master/lib/nicht/Nicht.class.php#L633)).
 * Offline attacks should be mitigated by using strong hashing algorithm such as PBKDF2 (e.g. [nicht](https://github.com/northox/nicht/blob/master/src/admin.php#L58) [PDKDF2](https://github.com/northox/nicht/blob/master/lib/nicht/MysqliNichtAuthPbkdf2.class.php#L65)).
 
 # Some maths
@@ -76,7 +76,7 @@ Here's some test:
     FAIL:  pr1nce55
     FAIL:  b4byg1r1
     FAIL:  passw0rd
-    PASS:  P@55W0r6
+    FAIL:  P@55W0r6
     FAIL:  zxcasdqwe
     FAIL:  zxc45dqw3
     PASS:  aPf1#@_GHe
