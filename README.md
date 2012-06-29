@@ -2,7 +2,7 @@
 StupidPass.class.php provides a simple way of preventing user from using easy to guess/bruteforce password. It has been develop to get rid of the *crack-lib PHP extension*.
 
 # Description
-StupidPass.class.php is a PHP library that provides simple, yet pretty effective password validation rules. The library introduce 1337 speaking extrapolation. What we mean by this is converting the supplied password to an exhaustive list of possible simple alteration such as changing the letter a by @ or 4. The complete list of alteration can be found below (section 1337 speak conversion table). This list is then compared against common passwords based on researches done on the latest password database breaches (stratfor, sony, phpbb, rockyou, myspace). Additionally, it validates the length and the use of multiple charsets (uppsercase, lowercase, numeric, special). The later reduce drastically the size of the common password list.
+StupidPass.class.php is a PHP library that provides simple, yet pretty effective password validation rules. The library introduce 1337 speaking extrapolation. What we mean by this is converting the supplied password to an exhaustive list of possible simple alteration such as changing the letter a by @ or 4. The complete list of alteration can be found below (section 1337 speak conversion table). This list is then compared against common passwords based on researches done on the latest password database breaches (linkedin, stratfor, sony, phpbb, rockyou, myspace). Additionally, it validates the length and the use of multiple charsets (uppsercase, lowercase, numeric, special). The later reduce drastically the size of the common password list.
 
 Here's the requirements:
 
@@ -17,7 +17,7 @@ Additionally:
 * Offline attacks should be mitigated by using strong hashing algorithm such as PBKDF2 (e.g. [nicht](https://github.com/northox/nicht/blob/master/src/admin.php#L58) [PDKDF2](https://github.com/northox/nicht/blob/master/lib/nicht/MysqliNichtAuthPbkdf2.class.php#L65)).
 
 # Some maths
-The maximum entropy provided by stupid password is: lowercase + uppercase + numeric + special = (26 + 26 + 10 + 10)^8 = 72^8 = 7.222041363×10¹⁴
+The minimum possible combination provided by stupid password is: lowercase + uppercase + numeric + special = (26 + 26 + 10 + 10)^8 = 72^8 = 7.222041363×10¹⁴
 
 n.b. I consider only 10 possiblities for special characters as most users only use what's on top of the numbers (from a keyboard perspective).
 
