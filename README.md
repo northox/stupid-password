@@ -2,7 +2,7 @@
 StupidPass.class.php provides a simple way of preventing user from using easy to guess/bruteforce password. It has been develop to get rid of the *crack-lib PHP extension*.
 
 # Description
-StupidPass.class.php is a PHP library that provides simple, yet pretty effective password validation rules. The library introduce 1337 speaking extrapolation. What we mean by this is converting the supplied password to an exhaustive list of possible simple alteration such as changing the letter a by @ or 4. The complete list of alteration can be found below (section 1337 speak conversion table). This list is then compared against common passwords based on researches done on the latest password database breaches (linkedin, stratfor, sony, phpbb, rockyou, myspace). Additionally, it validates the length and the use of multiple charsets (uppsercase, lowercase, numeric, special). The later reduce drastically the size of the common password list.
+StupidPass.class.php is a PHP library that provides simple, yet pretty effective password validation rules. The library implements 1337 speaking extrapolation. What we mean by this is converting the supplied password to an exhaustive list of possible simple alteration such as changing the letter a by @ or 4 which is bordly used complexify passwords. The complete list of alteration can be found below (section 1337 speak conversion table). This list is then compared against common passwords based on researches done on the latest password database breaches (linkedin, stratfor, sony, phpbb, rockyou, myspace). Additionally, it validates the length and the use of multiple charsets (uppsercase, lowercase, numeric, special). The later reduce drastically the size of the common password list.
 
 Here's the requirements:
 
@@ -43,7 +43,7 @@ Simplest usage would look something like this:
     $sp = new StupidPass();
     $bool = $sp->validate($PasswordToTest);
 
-The most complex usage could look like this:
+The most complex usage scenario could look like this:
 
     // Override the default errors messages
     $hardlang = array(
@@ -55,14 +55,13 @@ The most complex usage could look like this:
     'common' => 'is way too common! Come on, help yourself!',
     'environ'=> "WTF?!? Don't use the name of our website as your password!");
     
-    // Supply reference ot the environment (company, hostname, username, etc)
+    // Supply reference of the environment (company, hostname, username, etc)
     $environmental = array('northox', 'github', 'stupidpass', 'stupidpassword');
     
     $sp = new StupidPass(40, $environmental, './StupidPass.default.dict', $hardlang);
     if($sp->validate($PasswordToTest) === false) {
-      $err = $sp->get_errors();
       print("Your password is weak:<br \>");
-      foreach($err as $e) {
+      foreach($sp->get_errors() as $e) {
         print($e."<br />");
       }
     }
