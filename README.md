@@ -83,5 +83,8 @@ Here's some test:
 # License
 BSD license. In other word it's free software, free as in free beer.
 
+# Source
+https://github.com/northox/stupid-password
+
 # Authors
 Danny Fullerton - Mantor Organization
