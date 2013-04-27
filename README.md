@@ -40,31 +40,35 @@ If you consider loosing up the requirements, be advise that it is better to remo
 # Usage
 Simplest usage would look something like this:
 
-    $sp = new StupidPass();
-    $bool = $sp->validate($PasswordToTest);
+```php
+$sp = new StupidPass();
+$bool = $sp->validate($PasswordToTest);
+```
 
 The most complex usage scenario could look like this:
 
-    // Override the default errors messages
-    $hardlang = array(
-    'length' => 'must be between %s and %s characters inclusively',
-    'upper'  => 'must contain at least one uppercase character',
-    'lower'  => 'must contain at least one lowercase character',
-    'numeric'=> 'must contain at least one numeric character',
-    'special'=> 'must contain at least one special character',
-    'common' => 'is way too common! Come on, help yourself!',
-    'environ'=> "WTF?!? Don't use the name of our website as your password!");
-    
-    // Supply reference of the environment (company, hostname, username, etc)
-    $environmental = array('northox', 'github', 'stupidpass', 'stupidpassword');
-    
-    $sp = new StupidPass(40, $environmental, './StupidPass.default.dict', $hardlang);
-    if($sp->validate($PasswordToTest) === false) {
-      print("Your password is weak:<br \>");
-      foreach($sp->get_errors() as $e) {
-        print($e."<br />");
-      }
-    }
+```php
+// Override the default errors messages
+$hardlang = array(
+'length' => 'must be between %s and %s characters inclusively',
+'upper'  => 'must contain at least one uppercase character',
+'lower'  => 'must contain at least one lowercase character',
+'numeric'=> 'must contain at least one numeric character',
+'special'=> 'must contain at least one special character',
+'common' => 'is way too common! Come on, help yourself!',
+'environ'=> "WTF?!? Don't use the name of our website as your password!");
+
+// Supply reference of the environment (company, hostname, username, etc)
+$environmental = array('northox', 'github', 'stupidpass', 'stupidpassword');
+
+$sp = new StupidPass(40, $environmental, './StupidPass.default.dict', $hardlang);
+if($sp->validate($PasswordToTest) === false) {
+  print("Your password is weak:<br \>");
+  foreach($sp->get_errors() as $e) {
+    print($e."<br />");
+  }
+}
+```
 
 # Test
 Here's some test:
