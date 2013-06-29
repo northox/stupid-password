@@ -2,7 +2,7 @@
 StupidPass.class.php provides a simple way of preventing user from using easy to guess/bruteforce password. It has been develop to get rid of the *crack-lib PHP extension*.
 
 # Description
-StupidPass.class.php is a PHP library that provides simple, yet pretty effective password validation rules. The library implements 1337 speaking extrapolation. What we mean by this is converting the supplied password to an exhaustive list of possible simple alteration such as changing the letter a by @ or 4 which is bordly used complexify passwords. The complete list of alteration can be found below (section 1337 speak conversion table). This list is then compared against common passwords based on researches done on the latest password database breaches (linkedin, stratfor, sony, phpbb, rockyou, myspace). Additionally, it validates the length and the use of multiple charsets (uppsercase, lowercase, numeric, special). The later reduce drastically the size of the common password list.
+StupidPass.class.php is a PHP library that provides simple, yet pretty effective password validation rules. The library implements 1337 speaking extrapolation. What we mean by this is converting the supplied password into an exhaustive list of possible simple alteration such as changing the letter a by @ or 4 which is bordly used by end user to meet complexity rules. The complete list of alteration can be found below (section 1337 speak conversion table). This list is then compared against common passwords based on researches done on the latest password database breaches (linkedin, stratfor, sony, phpbb, rockyou, myspace). Additionally, it validates the length and the use of multiple charsets (uppsercase, lowercase, numeric, special). The later reduce drastically the size of the common password list.
 
 Here's the requirements:
 
@@ -16,14 +16,14 @@ Additionally:
 * Online attacks should be mitigated by implementing anti-bruteforce techniques (e.g. [nicht anti-bruteforce](https://github.com/northox/nicht/blob/master/lib/nicht/Nicht.class.php#L633)).
 * Offline attacks should be mitigated by using strong hashing algorithm such as PBKDF2 (e.g. [nicht](https://github.com/northox/nicht/blob/master/src/admin.php#L58) [PDKDF2](https://github.com/northox/nicht/blob/master/lib/nicht/MysqliNichtAuthPbkdf2.class.php#L65)).
 
-# Some maths
+## Some maths
 The minimum possible combination provided by stupid password is: lowercase + uppercase + numeric + special = (26 + 26 + 10 + 10)^8 = 72^8 = 7.222041363×10¹⁴
 
 n.b. I consider only 10 possiblities for special characters as most users only use what's on top of the numbers (from a keyboard perspective).
 
 If you consider loosing up the requirements, be advise that it is better to remove the numeric OR special charset (62^8 = 2.183401056×10¹⁴) then to use 7 characters passwords (72^7 = 1.0030613×10¹³) with all the charsets.
 
-# 1337 speak conversion table
+## 1337 speak conversion table
 
     @ => a OR o  
     4 => a
@@ -37,7 +37,7 @@ If you consider loosing up the requirements, be advise that it is better to remo
     6 => b OR d
     7 => t
 
-# Usage
+## Usage
 Simplest usage would look something like this:
 
 ```php
@@ -70,7 +70,7 @@ if($sp->validate($PasswordToTest) === false) {
 }
 ```
 
-# Test
+## Test
 Here's some test:
 
     $ php test.php 
