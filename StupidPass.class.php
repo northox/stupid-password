@@ -116,10 +116,12 @@ class StupidPass
   private function environmental()
   {
     foreach($this->environ as $env) {
-      foreach($this->pass as $pass) {
-        if(preg_match("/$env/i", $pass) == 1) {
-          $this->errors[] = $this->lang['environ'];
-          return;
+      if (strlen($env) > 3) {
+        foreach($this->pass as $pass) {
+          if(stristr($pass, $env) !== false) {
+            $this->errors[] = $this->lang['environ'];
+            return;
+          }
         }
       }
     }
