@@ -23,7 +23,7 @@
  *
  * Usage:
  *   $sp = new StupidPass();
- *   $boolResult = $sp->valitate($PasswordToTest);
+ *   $boolResult = $sp->validate($PasswordToTest);
  */
 
 class StupidPass
@@ -54,6 +54,11 @@ class StupidPass
 		if ($lang != null) $this->lang = $lang;
 	}
 
+	/**
+	 * Validate a password based on the configuration in the constructor.
+	 * @param $pass
+	 * @return bool true if validated, false if failed.  Call $this->getErrors() to retrieve the array of errors.
+	 */
 	public function validate($pass)
 	{
 		$this->errors = null;
@@ -73,6 +78,10 @@ class StupidPass
 		return (empty($this->errors));
 	}
 
+	/**
+	 * Retrieve an array of text from lang enumerating the errors.
+	 * @return array
+	 */
 	public function getErrors()
 	{
 		return $this->errors;
