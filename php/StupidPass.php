@@ -35,7 +35,8 @@ class StupidPass
 		'numeric' => 'Password must contain at least one numeric character',
 		'special' => 'Password must contain at least one special character',
 		'common' => 'Password is too common',
-		'environ' => 'Password use identifiable information and is guessable'
+		'environ' => 'Password use identifiable information and is guessable',
+		'onlynumeric' => 'Password cannot only contain numbers'
 	);
 	private $original = null;
 	private $pass = array();
@@ -62,6 +63,7 @@ class StupidPass
 		$this->lower();
 		$this->numeric();
 		$this->special();
+		$this->onlynumeric();
 
 		$this->extrapolate();
 
@@ -103,6 +105,13 @@ class StupidPass
 	{
 		if (!preg_match('/[0-9]+/', $this->original)) {
 			$this->errors[] = $this->lang['numeric'];
+		}
+	}
+
+	private function onlynumeric()
+	{
+		if (preg_match('/^[0-9]*$/', $this->original)) {
+			$this->errors[] = $this->lang['onlynumeric'];
 		}
 	}
 
