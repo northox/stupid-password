@@ -71,7 +71,7 @@ class StupidPass
 		return (empty($this->errors));
 	}
 
-	public function get_errors()
+	public function getErrors()
 	{
 		return $this->errors;
 	}
