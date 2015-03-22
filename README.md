@@ -8,13 +8,15 @@ Here's the requirements:
 
 * ensure the length is greater or equal to 8 characters; AND
 * ensure is contains 4 charsets (i.e. uppsercase, lowercase, numeric and special characters); AND
-* if environmental context is supplied, the list must not match the environmental context (regex) (e.g. the name of the company, the name of the application, the name of the site, the username, etc). AND
-* the list must not match with the supplied dictionary which is based on common weak passwords obtained by analysing the latest compromised password databases (stratfor, sony, phpbb, myspace, etc);
+* if environmental context is supplied, the list must not match the environmental context (regex) (e.g. the name of the company, the name of the application, the name of the site, the username, etc); AND
+* the list must not match with the supplied dictionary which is based on common weak passwords obtained by analysing the latest compromised password databases (stratfor, sony, phpbb, myspace, etc).
 
 Additionally:
 
-* Online attacks should be mitigated by implementing anti-bruteforce techniques (e.g. [nicht anti-bruteforce](https://github.com/northox/nicht/blob/master/lib/nicht/Nicht.class.php#L633)).
-* Offline attacks should be mitigated by using strong hashing algorithm such as PBKDF2 (e.g. [nicht](https://github.com/northox/nicht/blob/master/src/admin.php#L58) [PDKDF2](https://github.com/northox/nicht/blob/master/lib/nicht/MysqliNichtAuthPbkdf2.class.php#L65)).
+* Online attacks should be mitigated by implementing anti-bruteforce techniques; 
+  * e.g. [nicht anti-bruteforce](https://github.com/northox/nicht/blob/master/lib/nicht/Nicht.class.php#L633)
+* Offline attacks should be mitigated by using strong hashing algorithm such as PBKDF2.
+  * e.g. [nicht](https://github.com/northox/nicht/blob/master/src/admin.php#L58) [PBKDF2](https://github.com/northox/nicht/blob/master/lib/nicht/MysqliNichtAuthPbkdf2.class.php#L65)
 
 ## Some maths
 The minimum possible combination provided by stupid password is: lowercase + uppercase + numeric + special = (26 + 26 + 10 + 10)^8 = 72^8 = 7.222041363×10¹⁴
@@ -25,16 +27,16 @@ If you consider loosing up the requirements, be advise that it is better to remo
 
 ## 1337 speak conversion table
 
-    @ => a OR o  
+    @ => a, o  
     4 => a
     8 => b
     3 => e
-    1 => i OR l
-    ! => i OR l OR 1
+    1 => i, l
+    ! => i, l, 1
     0 => o
-    $ => s OR 5
+    $ => s, 5
     5 => s
-    6 => b OR d
+    6 => b, d
     7 => t
 
 ## Usage
@@ -85,7 +87,7 @@ Here's some test:
     PASS:  aPf1#@_GHe
 
 # License
-BSD license. In other word it's free software, free as in free beer.
+BSD license. In other word it's free software, almost free as in free beer.
 
 # Source
 https://github.com/northox/stupid-password
