@@ -46,8 +46,12 @@ class StupidPass
 	private $dict = null; // Path to the dictionary
 	private $environ = array(); // Regex of environmental info such as the name of the company.
 
-	public function __construct($maxlen = 40, $environ = array(), $dict = null, $lang = null)
+	public function __construct($maxlen = 40, $environ = array(), $dict = null, $lang = null, $options = array())
 	{
+		$this->options = $options;
+		if(!array_key_exists("disable", $this->options))
+		  $this->options['disable'] = array();
+
 		$this->maxlen = $maxlen;
 		$this->environ = $environ;
 		$this->dict = (isset($dict)) ? $dict : 'StupidPass.default.dict';
@@ -63,17 +67,25 @@ class StupidPass
 	{
 		$this->errors = null;
 		$this->original = $pass;
-		$this->length();
-		$this->upper();
-		$this->lower();
-		$this->numeric();
-		$this->special();
-		$this->onlynumeric();
+		if(!in_array('length', $this->options['disable']))
+		  $this->length();
+		if(!in_array('upper', $this->options['disable']))
+		  $this->upper();
+		if(!in_array('lower', $this->options['disable']))
+		  $this->lower();
+		if(!in_array('numeric', $this->options['disable']))
+		  $this->numeric();
+		if(!in_array('special', $this->options['disable']))
+		  $this->special();
+		if(!in_array('onlynumeric', $this->options['disable']))
+		  $this->onlynumeric();
 
 		$this->extrapolate();
 
-		$this->environmental();
-		$this->common();
+		if(!in_array('environ', $this->options['disable']))
+		  $this->environmental();
+		if(!in_array('common', $this->options['disable']))
+		  $this->common();
 		$this->pass = null;
 		return (empty($this->errors));
 	}
