@@ -210,7 +210,7 @@ class StupidPass
 			if ($c == 0) {
 				$new[] = $char;
 			} else {
-				for ($i = 0, $c = count($old); $i < $c; $i++) {
+				for ($i = 0; $i < $c; $i++) {
 					$new[] = @$old[$i] . $char;
 				}
 			}
@@ -220,5 +220,4 @@ class StupidPass
 		return $r;
 	}
 }
-
 ?>
