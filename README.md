@@ -62,8 +62,12 @@ $hardlang = array(
 
 // Supply reference of the environment (company, hostname, username, etc)
 $environmental = array('northox', 'github', 'stupidpass', 'stupidpassword');
+// Additional options
+$options = array(
+  'disable' => array('special'),
+);
 
-$sp = new StupidPass(40, $environmental, './StupidPass.default.dict', $hardlang);
+$sp = new StupidPass(40, $environmental, './StupidPass.default.dict', $hardlang, $options);
 if($sp->validate($PasswordToTest) === false) {
   print("Your password is weak:<br \>");
   foreach($sp->get_errors() as $e) {
@@ -71,6 +75,9 @@ if($sp->validate($PasswordToTest) === false) {
   }
 }
 ```
+
+Possible options:
+* 'disable' (array): disable stated tests, e.g. array('special', 'lower') to disable both the test for special and lowercase characters.
 
 ## Test
 Here's some test:
