@@ -1,0 +1,17 @@
+{
+    "name": "northox/stupid-password",
+    "description": "Provides a simple way of preventing user from using easy to guess/bruteforce password.",
+    "keywords": [
+        "password",
+        "security"
+    ],
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Danny Fullerton"
+        }
+    ],
+    "autoload": {
+        "files": ["php/StupidPass.php"]
+    }
+}
