@@ -105,3 +105,4 @@ Danny Fullerton - Mantor Organization
 # Contributors
 - Stephan Bösch-Plepelits aka [plepe](https://github.com/plepe)
 - Nathan Feger aka [nafeger](https://github.com/nafeger)
+- Mike McLin aka [mikemclin](https://github.com/mikemclin)
