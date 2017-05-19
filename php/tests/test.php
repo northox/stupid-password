@@ -17,7 +17,6 @@ $sp = new StupidPass();
 foreach ($list as $pass) {
   $m = ($sp->validate($pass) == false) ? "FAIL: " : "PASS: ";
   print("$m $pass\n");
-  #$err = $sp->get_errors();
-  #print_r($err);
+  // print_r($sp->getErrors());
 }
 ?>
