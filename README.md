@@ -78,6 +78,7 @@ if($sp->validate($PasswordToTest) === false) {
 
 Possible options:
 * 'disable' (array): disable stated tests, e.g. array('special', 'lower') to disable both the test for special and lowercase characters.
+* 'maxlen-guessable-test' (integer): disable environment and common password checks for passwords longer than given integer (due to high memory usage and cpu usage). Default: 24.
 
 ## Test
 Here's some test:

@@ -51,6 +51,8 @@ class StupidPass
 		$this->options = $options;
 		if(!array_key_exists("disable", $this->options))
 		  $this->options['disable'] = array();
+		if(!array_key_exists("maxlen-guessable-test", $this->options))
+		  $this->options['maxlen-guessable-test'] = 24;
 
 		$this->maxlen = $maxlen;
 		$this->environ = $environ;
@@ -80,12 +82,15 @@ class StupidPass
 		if(!in_array('onlynumeric', $this->options['disable']))
 		  $this->onlynumeric();
 
-		$this->extrapolate();
+                if (strlen($pass) <= $this->options['maxlen-guessable-test']) {
+                  $this->extrapolate();
 
-		if(!in_array('environ', $this->options['disable']))
-		  $this->environmental();
-		if(!in_array('common', $this->options['disable']))
-		  $this->common();
+                  if(!in_array('environ', $this->options['disable']))
+                    $this->environmental();
+                  if(!in_array('common', $this->options['disable']))
+                    $this->common();
+                }
+
 		$this->pass = null;
 		return (empty($this->errors));
 	}

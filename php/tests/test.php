@@ -10,7 +10,8 @@ $list = array(
 'P@55W0r6',
 'zxcasdqwe',
 'zxc45dqw3',
-'aPf1#@_GHe'
+'aPf1#@_GHe',
+'437818ec5af53a3ba6e5cb9435fe177fALKO',
 );
 
 $sp = new StupidPass();
