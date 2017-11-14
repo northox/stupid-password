@@ -2,11 +2,13 @@
 StupidPass.class.php provides a simple way of preventing user from using easy to guess/bruteforce password. It has been develop to get rid of the *crack-lib PHP extension*.
 
 # Description
-StupidPass.class.php is a PHP library that provides simple, yet pretty effective password validation rules. The library implements 1337 speaking extrapolation. What we mean by this is converting the supplied password into an exhaustive list of possible simple alteration such as changing the letter a by @ or 4 which is bordly used by end user to meet complexity rules. The complete list of alteration can be found below (section 1337 speak conversion table). This list is then compared against common passwords based on researches done on the latest password database breaches (linkedin, stratfor, sony, phpbb, rockyou, myspace). Additionally, it validates the length and the use of multiple charsets (uppsercase, lowercase, numeric, special). The later reduce drastically the size of the common password list.
+StupidPass.class.php is a PHP library that provides simple, yet pretty effective password validation rules.
+
+The library implements 1337 speaking extrapolation. This converts the supplied password into an exhaustive list of possible simple alterations, such as changing the letter `a` to `@` or `4`, which is bordly used by end user to meet complexity rules. The complete list of alterations can be found below. This list is then compared against common passwords based on researcs done on the latest password database breaches (linkedin, stratfor, sony, phpbb, rockyou, myspace). Additionally, it validates the length and use of multiple charsets (uppsercase, lowercase, numeric, special) - the later drastically reducing the size of the common password list.
 
 Here's the requirements:
 
-* ensure the length is greater or equal to 8 characters; AND
+* ensure the length is at least 8 characters; AND
 * ensure is contains 4 charsets (i.e. uppsercase, lowercase, numeric and special characters); AND
 * if environmental context is supplied, the list must not match the environmental context (regex) (e.g. the name of the company, the name of the application, the name of the site, the username, etc); AND
 * the list must not match with the supplied dictionary which is based on common weak passwords obtained by analysing the latest compromised password databases (stratfor, sony, phpbb, myspace, etc).
@@ -23,7 +25,7 @@ The minimum possible combination provided by stupid password is: lowercase + upp
 
 n.b. I consider only 10 possiblities for special characters as most users only use what's on top of the numbers (from a keyboard perspective).
 
-If you consider loosing up the requirements, be advise that it is better to remove the numeric OR special charset (62^8 = 2.183401056×10¹⁴) then to use 7 characters passwords (72^7 = 1.0030613×10¹³) with all the charsets.
+If you consider loosing up the requirements, be advised that removing the numeric OR special charset (62^8 = 2.183401056×10¹⁴) is better than using 7 character passwords (72^7 = 1.0030613×10¹³) with all charsets.
 
 ## 1337 speak conversion table
 
@@ -40,11 +42,11 @@ If you consider loosing up the requirements, be advise that it is better to remo
     7 => t
 
 ## Usage
-Simplest usage would look something like this:
+Simplest possible usage looks like this:
 
 ```php
-$sp = new StupidPass();
-$bool = $sp->validate($PasswordToTest);
+$simplePass = new StupidPass();
+$bool = $simplePass->validate($PasswordToTest);
 ```
 
 The most complex usage scenario could look like this:
@@ -52,33 +54,39 @@ The most complex usage scenario could look like this:
 ```php
 // Override the default errors messages
 $hardlang = array(
-'length' => 'must be between %s and %s characters inclusively',
-'upper'  => 'must contain at least one uppercase character',
-'lower'  => 'must contain at least one lowercase character',
-'numeric'=> 'must contain at least one numeric character',
-'special'=> 'must contain at least one special character',
-'common' => 'is way too common! Come on, help yourself!',
-'environ'=> "WTF?!? Don't use the name of our website as your password!");
+  'length'      => 'Password must be between %s and %s characters inclusively',
+  'upper'       => 'Password must contain at least one uppercase character',
+  'lower'       => 'Password must contain at least one lowercase character',
+  'numeric'     => 'Password must contain at least one numeric character',
+  'special'     => 'Password must contain at least one special character',
+  'common'      => 'Password is too common',
+  'environ'     => 'Password uses identifiable information and is guessable',
+  'onlynumeric' => 'Password must not be entirely numeric'
+);
 
 // Supply reference of the environment (company, hostname, username, etc)
 $environmental = array('northox', 'github', 'stupidpass', 'stupidpassword');
+
 // Additional options
 $options = array(
   'disable' => array('special'),
 );
 
-$sp = new StupidPass(40, $environmental, './StupidPass.default.dict', $hardlang, $options);
-if($sp->validate($PasswordToTest) === false) {
-  print("Your password is weak:<br \>");
-  foreach($sp->get_errors() as $e) {
-    print($e."<br />");
+// The first parameter is the max length
+$stupidPass = new StupidPass(40, $environmental, './StupidPass.default.dict', $hardlang, $options);
+if($stupidPass->validate($PasswordToTest) === false) {
+  print('Your password is weak:<br \>');
+  foreach($stupidPass->getErrors() as $error) {
+    print($error . '<br />');
   }
 }
 ```
 
 Possible options:
-* 'disable' (array): disable stated tests, e.g. array('special', 'lower') to disable both the test for special and lowercase characters.
+* 'disable' (array): disable stated tests, e.g. `array('special', 'lower')` to disable both the test for special and lowercase characters.
 * 'maxlen-guessable-test' (integer): disable environment and common password checks for passwords longer than given integer (due to high memory usage and cpu usage). Default: 24.
+
+Please be advised that the minimum length requirement of 8 is hard-coded and can not be changed.
 
 ## Test
 Here's some test:
@@ -95,7 +103,7 @@ Here's some test:
     PASS:  aPf1#@_GHe
 
 # License
-BSD license. In other word it's free software, almost free as in free beer.
+BSD license. In other words, it's free software, almost free as in free beer.
 
 # Source
 https://github.com/northox/stupid-password
