@@ -35,8 +35,8 @@ class StupidPass
 		'numeric' => 'Password must contain at least one numeric character',
 		'special' => 'Password must contain at least one special character',
 		'common' => 'Password is too common',
-		'environ' => 'Password use identifiable information and is guessable',
-		'onlynumeric' => 'Password cannot only contain numbers'
+		'environ' => 'Password uses identifiable information and is guessable',
+		'onlynumeric' => 'Password must not be entirely numeric'
 	);
 	private $original = null;
 	private $pass = array();
