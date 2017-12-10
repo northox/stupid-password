@@ -1,6 +1,6 @@
 <?php
 // Test Stupid Password
-require('StupidPass.class.php');
+require('StupidPass.php');
 $list = array(
 'football',
 'fOOtb4ll',
