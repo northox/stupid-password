@@ -61,7 +61,7 @@ $hardlang = array(
   'special'     => 'Password must contain at least one special character',
   'common'      => 'Password is too common',
   'environ'     => 'Password uses identifiable information and is guessable',
-  'onlynumeric' => 'Password must not be entirely numeric'
+  'onlyNumeric' => 'Password must not be entirely numeric'
 );
 
 // Supply reference of the environment (company, hostname, username, etc)
