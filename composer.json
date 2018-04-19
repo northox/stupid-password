@@ -12,6 +12,8 @@
         }
     ],
     "autoload": {
-        "files": ["php/StupidPass.php"]
+        "psr-4": {
+            "StupidPass\\": ["src/"]
+        }
     }
 }

@@ -26,6 +26,8 @@
  *   $boolResult = $sp->validate($PasswordToTest);
  */
 
+namespace StupidPass;
+
 class StupidPass
 {
     private $lang = array(
