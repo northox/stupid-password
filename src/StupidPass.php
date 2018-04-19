@@ -49,6 +49,8 @@ class StupidPass
     private $dict = null; // Path to the dictionary
     private $environ = array(); // Regex of environmental info such as the name of the company.
 
+    const DEFAULT_DICTIONARY = 'StupidPass.default.dict';
+
     /**
      * StupidPass constructor.
      * @param int $maxlen Max password length allowed
@@ -69,7 +71,8 @@ class StupidPass
 
         $this->maxlen = $maxlen;
         $this->environ = $environ;
-        $this->dict = (isset($dict)) ? $dict : 'StupidPass.default.dict';
+        $defaultDictionary = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . self::DEFAULT_DICTIONARY);
+        $this->dict = (isset($dict)) ? $dict : $defaultDictionary;
         if ($lang != null) {
             $this->lang = $lang;
         }
