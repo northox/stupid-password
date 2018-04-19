@@ -40,6 +40,7 @@ class StupidPass
         'environ' => 'Password uses identifiable information and is guessable',
         'onlynumeric' => 'Password must not be entirely numeric'
     );
+    private $options = array();
     private $original = null;
     private $pass = array();
     private $errors = array();
@@ -48,6 +49,14 @@ class StupidPass
     private $dict = null; // Path to the dictionary
     private $environ = array(); // Regex of environmental info such as the name of the company.
 
+    /**
+     * StupidPass constructor.
+     * @param int $maxlen Max password length allowed
+     * @param string[] $environ Environment names or strings that might be used as a password to disallow
+     * @param null $dict Path to dictionary file
+     * @param null $lang Text to return is a specific test fails
+     * @param array $options Options for the password validation to disable or enable
+     */
     public function __construct($maxlen = 40, $environ = array(), $dict = null, $lang = null, $options = array())
     {
         $this->options = $options;
@@ -68,7 +77,7 @@ class StupidPass
 
     /**
      * Validate a password based on the configuration in the constructor.
-     * @param $pass
+     * @param string $pass
      * @return bool true if validated, false if failed.  Call $this->getErrors() to retrieve the array of errors.
      */
     public function validate($pass)
@@ -91,7 +100,7 @@ class StupidPass
             $this->special();
         }
         if (!in_array('onlynumeric', $this->options['disable'])) {
-            $this->onlynumeric();
+            $this->onlyNumeric();
         }
 
         if (strlen($pass) <= $this->options['maxlen-guessable-test']) {
@@ -121,8 +130,8 @@ class StupidPass
 
     private function length()
     {
-        $passlen = strlen($this->original);
-        if ($passlen < $this->minlen OR $passlen > $this->maxlen) {
+        $passLen = strlen($this->original);
+        if ($passLen < $this->minlen OR $passLen > $this->maxlen) {
             $err = sprintf($this->lang['length'], $this->minlen, $this->maxlen);
             $this->errors[] = $err;
         }
@@ -149,7 +158,7 @@ class StupidPass
         }
     }
 
-    private function onlynumeric()
+    private function onlyNumeric()
     {
         if (preg_match('/^[0-9]*$/', $this->original)) {
             $this->errors[] = $this->lang['onlynumeric'];
