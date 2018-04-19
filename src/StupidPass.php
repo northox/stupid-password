@@ -28,6 +28,7 @@
 
 namespace StupidPass;
 
+
 class StupidPass
 {
     private $lang = array(
@@ -82,6 +83,7 @@ class StupidPass
      * Validate a password based on the configuration in the constructor.
      * @param string $pass
      * @return bool true if validated, false if failed.  Call $this->getErrors() to retrieve the array of errors.
+     * @throws DictionaryNotFoundException
      */
     public function validate($pass)
     {
@@ -188,11 +190,14 @@ class StupidPass
         }
     }
 
+    /**
+     * @throws DictionaryNotFoundException
+     */
     private function common()
     {
         $fp = fopen($this->dict, 'r');
         if (!$fp) {
-            throw new Exception("Can't open file: " . $this->dict);
+            throw new DictionaryNotFoundException("Can't open file: " . $this->dict);
         }
         while (($buf = fgets($fp, 1024)) !== false) {
             $buf = rtrim($buf);
