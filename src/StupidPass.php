@@ -195,7 +195,11 @@ class StupidPass
      */
     private function common()
     {
-        $fp = fopen($this->dict, 'r');
+        if (!file_exists($this->dict)) {
+            throw new DictionaryNotFoundException("Can't open file: " . $this->dict);
+        }
+
+        $fp = @fopen($this->dict, 'r');
         if (!$fp) {
             throw new DictionaryNotFoundException("Can't open file: " . $this->dict);
         }
