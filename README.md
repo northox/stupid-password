@@ -9,7 +9,7 @@ The library implements 1337 speaking extrapolation. This converts the supplied p
 Here's the requirements:
 
 * ensure the length is at least 8 characters; AND
-* ensure is contains 4 charsets (i.e. uppsercase, lowercase, numeric and special characters); AND
+* ensure is contains 4 charsets (i.e. uppercase, lowercase, numeric and special characters); AND
 * if environmental context is supplied, the list must not match the environmental context (regex) (e.g. the name of the company, the name of the application, the name of the site, the username, etc); AND
 * the list must not match with the supplied dictionary which is based on common weak passwords obtained by analysing the latest compromised password databases (stratfor, sony, phpbb, myspace, etc).
 
@@ -23,7 +23,7 @@ Additionally:
 ## Some maths
 The minimum possible combination provided by stupid password is: lowercase + uppercase + numeric + special = (26 + 26 + 10 + 10)^8 = 72^8 = 7.222041363×10¹⁴
 
-n.b. I consider only 10 possiblities for special characters as most users only use what's on top of the numbers (from a keyboard perspective).
+n.b. I consider only 10 possibilities for special characters as most users only use what's on top of the numbers (from a keyboard perspective).
 
 If you consider loosing up the requirements, be advised that removing the numeric OR special charset (62^8 = 2.183401056×10¹⁴) is better than using 7 character passwords (72^7 = 1.0030613×10¹³) with all charsets.
 
@@ -45,6 +45,7 @@ If you consider loosing up the requirements, be advised that removing the numeri
 Simplest possible usage looks like this:
 
 ```php
+use StupidPass;
 $simplePass = new StupidPass();
 $bool = $simplePass->validate($PasswordToTest);
 ```
@@ -73,6 +74,7 @@ $options = array(
 );
 
 // The first parameter is the max length
+use StupidPass;
 $stupidPass = new StupidPass(40, $environmental, './StupidPass.default.dict', $hardlang, $options);
 if($stupidPass->validate($PasswordToTest) === false) {
   print('Your password is weak:<br \>');
@@ -88,19 +90,17 @@ Possible options:
 
 Please be advised that the minimum length requirement of 8 is hard-coded and can not be changed.
 
-## Test
-Here's some test:
+## PHP Unit Tests
+```bash
+$ ./vendor/bin/phpunit tests/Tests/StupidPassTest.php
+PHPUnit 3.7.38 by Sebastian Bergmann.
 
-    $ php test.php 
-    FAIL:  football
-    FAIL:  fOOtb4ll
-    FAIL:  pr1nce55
-    FAIL:  b4byg1r1
-    FAIL:  passw0rd
-    FAIL:  P@55W0r6
-    FAIL:  zxcasdqwe
-    FAIL:  zxc45dqw3
-    PASS:  aPf1#@_GHe
+.......................
+
+Time: 43 ms, Memory: 4.00MB
+
+OK (23 tests, 45 assertions)
+```
 
 # License
 BSD license. In other words, it's free software, almost free as in free beer.
@@ -116,3 +116,4 @@ Danny Fullerton - Mantor Organization
 - Nathan Feger aka [nafeger](https://github.com/nafeger)
 - Mike McLin aka [mikemclin](https://github.com/mikemclin)
 - René Roth aka [reneroth](https://github.com/reneroth)
+- John Koniges aka [venar](https://github.com/venar)
