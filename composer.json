@@ -15,5 +15,13 @@
         "psr-4": {
             "StupidPass\\": ["src/"]
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "StupidPass\\Tests\\": ["tests/"]
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
     }
 }
